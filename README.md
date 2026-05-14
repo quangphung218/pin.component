@@ -1,6 +1,66 @@
 ![License: CC BY-NC-SA 4.0](https://flat.badgen.net/static/license/CC-BY-NC-SA-4.0/green)
 
-# Component Template
+# Pin button (`<pin-button>`)
+
+Web component pin/unpin control built with [`@scalable.software/component`](https://www.npmjs.com/package/@scalable.software/component). Full API reference is generated into the `docs/` folder (`npm run document`, then open `docs/index.html`).
+
+## Usage
+
+Register the element once (after loading the HTML template), then use the tag in markup or create it from JavaScript.
+
+```html
+<script type="module">
+  import { Pin } from "@quangphung218/pin";
+
+  await Pin.Template.load("pin.template.html");
+  customElements.define(Pin.Tag, Pin);
+</script>
+
+<pin-button status="unpinned"></pin-button>
+```
+
+### Attributes
+
+| Attribute     | Default      | Description                          |
+| ------------- | ------------ | ------------------------------------ |
+| `status`      | `unpinned`   | `pinned` or `unpinned` (validated). |
+| `visibility`  | *(optional)* | `visible` or `hidden`.               |
+
+### Properties & operations
+
+- **`pin.status`** — get/set `Status.PINNED` or `Status.UNPINNED` (throws on invalid values via `Validate.status`).
+- **`pin.visibility`** — `Visibility.VISIBLE` / `Visibility.HIDDEN`.
+- **`pin.pin()`**, **`pin.unpin()`**, **`pin.toggle()`** — convenience wrappers around `status`.
+- **`pin.show()`**, **`pin.hide()`** — visibility helpers.
+
+### Events
+
+Listen with `addEventListener` using the string names from `Event` (e.g. `Event.ON_PIN` is `"onpin"`):
+
+- **`onpin`** — fired when status becomes `pinned`; `event.detail.status`.
+- **`onunpin`** — fired when status becomes `unpinned`; `event.detail.status`.
+- **`onshow`** / **`onhide`** — fired on visibility changes; `event.detail.visibility`.
+
+You can also assign **`pin.onpin`**, **`pin.onunpin`**, **`pin.onshow`**, **`pin.onhide`** with listener functions.
+
+### Exports (`@quangphung218/pin`)
+
+`Pin`, `Tag`, `CSS`, `Attributes`, `State`, `Status`, `Visibility`, `Operation`, `Event`, `Gesture`, `Validate`.
+
+## Getting Started (development)
+
+```bash
+npm install
+npm test
+npm run build
+npm run document
+```
+
+> Coverage and HTML reports: `coverage/`, `report/`. API docs: `docs/`.
+
+---
+
+## Original template notes
 
 This is a template for creating a new component. It includes a basic structure for the component, as well as a set of scripts for building, testing, and documenting the component.
 
