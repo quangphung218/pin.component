@@ -47,6 +47,26 @@ metadata(State.VISIBILITY, () => {
   });
 });
 
+metadata(State.VISIBILITY, () => {
+  and("Visibility imported", () => {
+    then("Visibility is defined", () => {
+      expect(Visibility).toBeDefined();
+    });
+
+    and("Visibility is defined", () => {
+      then("Visibility is an object", () => {
+        expect(typeof Visibility).toBe("object");
+      });
+
+      when("Visibility is an object", () => {
+        then("`Visibility.VISIBLE` exists", () => {
+          expect((Visibility as any).VISIBLE).toBeDefined();
+        });
+      });
+    });
+  });
+});
+
 metadata(Metadata.STATE, () => {
   and("State imported", () => {
     then("State is defined", () => {
