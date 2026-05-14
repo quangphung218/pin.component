@@ -46,6 +46,9 @@ metadata(State.STATUS, () => {
         then("`Status.PINNED` exists", () => {
             expect(Status.PINNED).toBeDefined();
         });
+        then("`Status.UNPINNED` exists", () => {
+            expect(Status.UNPINNED).toBeDefined();
+        });
     });
 });
 metadata(State.VISIBILITY, () => {
