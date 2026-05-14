@@ -53,6 +53,19 @@ metadata(State.VISIBILITY, () => {
         });
     });
 });
+// State (continued)
+metadata(Metadata.STATE, () => {
+    and("Attributes imported", () => {
+        then("`Attributes.STATUS` is defined", () => {
+            expect(Attributes.STATUS).toBeDefined();
+        });
+        and("`Attributes.STATUS` is defined", () => {
+            then("`State.STATUS` is defined", () => {
+                expect(State.STATUS).toBeDefined();
+            });
+        });
+    });
+});
 metadata(Metadata.STATE, () => {
     and("State imported", () => {
         then("State is defined", () => {
