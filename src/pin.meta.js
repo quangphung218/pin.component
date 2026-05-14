@@ -39,6 +39,7 @@ export const Visibility = {
  * @enum
  */
 export const Status = {
+    PINNED: "pinned",
     UNPINNED: "unpinned",
 };
 /**
