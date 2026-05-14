@@ -52,7 +52,57 @@ validation(State.STATUS, () => {
 
     and("Validate is defined", () => {
       then("`Validate.status` static method is defined", () => {
-        expect((Validate as any).status).toBeDefined();
+        expect(Validate.status).toBeDefined();
+      });
+
+      when("`Validate.status(value)` accepts `Status.PINNED`", () => {
+        let value: Status;
+        beforeEach(() => {
+          value = Status.PINNED;
+        });
+
+        then("`Validate.status(value)` returns `Status.PINNED`", () => {
+          expect(Validate.status(value)).toBe(Status.PINNED);
+        });
+      });
+
+      when("`Validate.status(value)` accepts `Status.UNPINNED`", () => {
+        let value: Status;
+        beforeEach(() => {
+          value = Status.UNPINNED;
+        });
+
+        then("`Validate.status(value)` returns `Status.UNPINNED`", () => {
+          expect(Validate.status(value)).toBe(Status.UNPINNED);
+        });
+      });
+
+      and("`value` is `invalid`", () => {
+        let value: any;
+        beforeEach(() => {
+          value = "invalid";
+        });
+
+        when("`Validate.status(value)` is called", () => {
+          let error: unknown | undefined;
+          beforeEach(() => {
+            try {
+              Validate.status(value);
+            } catch (err) {
+              error = err;
+            }
+          });
+
+          then("an error is thrown", () => {
+            expect(error).not.toBeUndefined();
+          });
+
+          and("an error is thrown", () => {
+            then("error message contains 'Invalid status value: invalid'", () => {
+              expect((error as Error).message).toEqual("Invalid status value: invalid");
+            });
+          });
+        });
       });
     });
   });

@@ -345,6 +345,28 @@ state(State.STATUS, () => {
               expect(pin.status).toBe(Status.PINNED);
             });
           });
+
+          when("`pin.status` is set to `invalid`", () => {
+            let error: Error;
+            beforeEach(() => {
+              try {
+                (pin as any).status = "invalid";
+              } catch (err) {
+                error = err as Error;
+              }
+            });
+            afterEach(() => {
+              pin.status = Status.UNPINNED;
+            });
+
+            then("an error is thrown", () => {
+              expect(error).toBeDefined();
+            });
+
+            then("error message contains 'Invalid status value: invalid'", () => {
+              expect(error.message).toBe("Invalid status value: invalid");
+            });
+          });
         });
       });
     });

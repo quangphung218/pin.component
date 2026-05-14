@@ -86,8 +86,7 @@ export class Pin extends Component {
   }
 
   public set status(status: Status) {
-    const valid = (Object.values(Status) as string[]).includes(status as string);
-    if (!valid) throw new Error(`Invalid status value: ${status}`);
+    status = Validate.status(status);
     if (this._status === status) return;
     this._status = status;
     this.setAttribute(Attributes.STATUS, status);
