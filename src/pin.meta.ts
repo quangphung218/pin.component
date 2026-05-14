@@ -60,6 +60,20 @@ export type Visibility = (typeof Visibility)[keyof typeof Visibility];
  * @category Metadata
  * @enum
  */
+export const Status = {
+  PINNED: "pinned",
+  UNPINNED: "unpinned",
+} as const;
+
+/**
+ * @category Metadata
+ */
+export type Status = (typeof Status)[keyof typeof Status];
+
+/**
+ * @category Metadata
+ * @enum
+ */
 export const Operation = {
   HIDE: "hide",
   SHOW: "show",

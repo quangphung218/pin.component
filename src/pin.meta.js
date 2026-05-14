@@ -38,6 +38,14 @@ export const Visibility = {
  * @category Metadata
  * @enum
  */
+export const Status = {
+    PINNED: "pinned",
+    UNPINNED: "unpinned",
+};
+/**
+ * @category Metadata
+ * @enum
+ */
 export const Operation = {
     HIDE: "hide",
     SHOW: "show",
