@@ -310,6 +310,10 @@ state(State.STATUS, () => {
         then("`status` attribute is `Status.UNPINNED`", () => {
           expect(pin.getAttribute(Attributes.STATUS)).toBe(Status.UNPINNED);
         });
+
+        then("`pin.status` setter exists", () => {
+          expect(hasSetter(pin, "status")).toBeTrue();
+        });
       });
     });
   });
