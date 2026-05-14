@@ -123,4 +123,8 @@ svg {
     border-color: #6a9ae0;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   }
+
+  .icon:hover svg {
+    fill: #9ec5ff;
+  }
 }
