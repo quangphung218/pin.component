@@ -4,7 +4,8 @@ import {
   State,
   Operation,
   Event,
-  Gesture
+  Gesture,
+  Visibility
 } from "@quangphung218/pin";
 
 // Tag
@@ -32,6 +33,20 @@ metadata(Metadata.ATTRIBUTES, () => {
 });
 
 // State
+metadata(State.VISIBILITY, () => {
+  and("Attributes imported", () => {
+    then("`Attributes.VISIBILITY` is defined", () => {
+      expect((Attributes as any).VISIBILITY).toBeDefined();
+    });
+
+    and("`Attributes.VISIBILITY` is defined", () => {
+      then("`State.VISIBILITY` is defined", () => {
+        expect((State as any).VISIBILITY).toBeDefined();
+      });
+    });
+  });
+});
+
 metadata(Metadata.STATE, () => {
   and("State imported", () => {
     then("State is defined", () => {
