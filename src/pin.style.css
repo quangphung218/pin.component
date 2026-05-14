@@ -3,4 +3,82 @@
 ======================= */
 :host {
   display: inline-block;
+  --button-background-color: #ffffff;
+  --button-border-color: #d1d1d1;
+  --button-radius: 8px;
+  --button-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  --icon-size: 40px;
+  --icon-margin: 4px;
+  --svg-fill-color: #5a5a5a;
+  --svg-size: 24px;
+  --svg-margin: 8px;
+}
+
+/* =======================
+  Icon Styles
+======================= */
+.icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size, 40px);
+  height: var(--icon-size, 40px);
+  margin: var(--icon-margin, 4px);
+  border-radius: var(--button-radius, 8px);
+  border: 1px solid var(--button-border-color, #d1d1d1);
+  background-color: var(--button-background-color, #ffffff);
+  box-shadow: var(--button-shadow, 0 1px 4px rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+/* =======================
+  SVG Styles
+======================= */
+svg {
+  fill: var(--svg-fill-color, #5a5a5a);
+  width: var(--svg-size, 24px);
+  height: var(--svg-size, 24px);
+  margin: var(--svg-margin, 8px);
+  transition: fill 0.2s, opacity 0.2s;
+}
+
+/* =======================
+  Visibility Styles
+======================= */
+:host([visibility="hidden"]) {
+  display: none;
+}
+
+/* =======================
+  Pin status presentation
+======================= */
+.unpinned {
+  display: block;
+}
+
+.pinned {
+  display: block;
+}
+
+:host([status="unpinned"]) .pinned {
+  display: none;
+}
+
+:host([status="unpinned"]) .unpinned {
+  display: block;
+}
+
+:host([status="pinned"]) .pinned {
+  display: block;
+}
+
+:host([status="pinned"]) .unpinned {
+  display: none;
+}
+
+:host([status="pinned"]) .icon {
+  background-color: #eef6ff;
+  border-color: #4a90d9;
 }
