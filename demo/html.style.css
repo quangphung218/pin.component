@@ -27,8 +27,40 @@ body {
   }
 }
 
-pin-component {
-  position: absolute;
-  left: 48px;
-  top: 48px;
+pin-button {
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+.demo {
+  box-sizing: border-box;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.demo__hint {
+  margin: 0.5rem 0 1rem;
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+
+.demo__log {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  min-height: 4rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  .demo__log {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.06);
+  }
 }
