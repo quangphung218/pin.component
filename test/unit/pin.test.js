@@ -1,5 +1,5 @@
 import { Template } from "@scalable.software/component";
-import { Pin, Tag, CSS, Attributes, Visibility, State } from "@quangphung218/pin";
+import { Pin, Tag, CSS, Attributes, Visibility, State, Operation } from "@quangphung218/pin";
 // Configuration
 configuration(Configuration.TAG, () => {
     and("Pin imported", () => {
@@ -219,6 +219,43 @@ state(State.VISIBILITY, () => {
     });
 });
 // Operation
+operation(Operation.HIDE, () => {
+    and("Pin is defined in custom element registry", () => {
+        beforeEach(() => {
+            define(Pin.Tag, Pin);
+        });
+        and("HTML Template is added to DOM", () => {
+            beforeEach(async () => {
+                await Pin.Template.load("pin.template.html");
+            });
+            afterEach(() => {
+                remove(Pin.Tag);
+            });
+            and("a new pin is added to DOM", () => {
+                let pin;
+                beforeEach(() => {
+                    pin = add(Pin.Tag);
+                });
+                afterEach(() => {
+                    pin.remove();
+                });
+                then("`pin.hide` method exists", () => {
+                    expect(pin.hide).toBeDefined();
+                });
+                and("`pin.hide` method exists", () => {
+                    when("invoking `pin.hide`", () => {
+                        beforeEach(() => {
+                            pin.hide();
+                        });
+                        then("`pin.visibility` is `Visibility.HIDDEN`", () => {
+                            expect(pin.visibility).toBe(Visibility.HIDDEN);
+                        });
+                    });
+                });
+            });
+        });
+    });
+});
 // Event
 // Gesture
 //# sourceMappingURL=pin.test.js.map
