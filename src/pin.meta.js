@@ -47,6 +47,7 @@ export const Operation = {
  */
 export const Event = {
     ON_HIDE: "onhide",
+    ON_SHOW: "onshow",
 };
 /**
  * @category Metadata
