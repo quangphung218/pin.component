@@ -7,7 +7,7 @@ import { Component, Template } from "@scalable.software/component";
 import { type Configuration } from "@scalable.software/component";
 
 // Component Metadata
-import { Tag, CSS, Attributes } from "./pin.meta.js";
+import { Tag, CSS, Attributes, Visibility } from "./pin.meta.js";
 
 /**
  * Optional Configuration: required for components with custom layout and style
@@ -55,6 +55,16 @@ export class Pin extends Component {
    * @hidden
    */
   protected elements: {} = {};
+
+  private _visibility: Visibility = Visibility.VISIBLE;
+
+  /**
+   * The visibility state of the component
+   * @category State
+   */
+  public get visibility(): Visibility {
+    return this._visibility;
+  }
 
   /**
    * @hidden
