@@ -1,4 +1,5 @@
 import { Tag, Attributes, State, Operation, Event, Gesture, Visibility } from "@quangphung218/pin";
+import * as PinModule from "@quangphung218/pin";
 // Tag
 metadata(Metadata.TAG, () => {
     when("Tag imported", () => {
@@ -30,6 +31,13 @@ metadata(State.VISIBILITY, () => {
             then("`State.VISIBILITY` is defined", () => {
                 expect(State.VISIBILITY).toBeDefined();
             });
+        });
+    });
+});
+metadata(State.STATUS, () => {
+    and("PinModule imported", () => {
+        then("`Status` exists", () => {
+            expect(PinModule.Status).toBeDefined();
         });
     });
 });
