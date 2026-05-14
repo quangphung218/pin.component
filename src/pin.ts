@@ -8,6 +8,7 @@ import { type Configuration } from "@scalable.software/component";
 
 // Component Metadata
 import { Tag, CSS, Attributes, Visibility } from "./pin.meta.js";
+import { Validate } from "./pin.validation.js";
 
 /**
  * Optional Configuration: required for components with custom layout and style
@@ -72,7 +73,10 @@ export class Pin extends Component {
    */
   public set visibility(visibility: Visibility) {
     visibility = visibility ?? Visibility.VISIBLE;
+    if (this._visibility === visibility) return;
     this._visibility = visibility;
+    visibility === Visibility.VISIBLE && this.removeAttribute(Attributes.VISIBILITY);
+    visibility === Visibility.HIDDEN && this.setAttribute(Attributes.VISIBILITY, visibility);
   }
 
   /**
@@ -87,7 +91,9 @@ export class Pin extends Component {
    * @category Configuration
    * @hidden
    */
-  protected _attributeHandlers = {};
+  protected _attributeHandlers = {
+    [Attributes.VISIBILITY]: (value: Visibility) => (this.visibility = value),
+  };
 
   /**
    * Cache element references to improve performance

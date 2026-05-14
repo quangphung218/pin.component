@@ -61,7 +61,11 @@ export class Pin extends Component {
      */
     set visibility(visibility) {
         visibility = visibility ?? Visibility.VISIBLE;
+        if (this._visibility === visibility)
+            return;
         this._visibility = visibility;
+        visibility === Visibility.VISIBLE && this.removeAttribute(Attributes.VISIBILITY);
+        visibility === Visibility.HIDDEN && this.setAttribute(Attributes.VISIBILITY, visibility);
     }
     /**
      * @hidden
@@ -74,7 +78,9 @@ export class Pin extends Component {
      * @category Configuration
      * @hidden
      */
-    _attributeHandlers = {};
+    _attributeHandlers = {
+        [Attributes.VISIBILITY]: (value) => (this.visibility = value),
+    };
     /**
      * Cache element references to improve performance
      * @category Configuration
