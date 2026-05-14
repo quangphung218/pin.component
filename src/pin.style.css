@@ -69,3 +69,7 @@ svg {
 :host([status="unpinned"]) .unpinned {
   display: block;
 }
+
+:host([status="pinned"]) .pinned {
+  display: block;
+}
