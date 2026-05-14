@@ -57,3 +57,7 @@ svg {
 .unpinned {
   display: block;
 }
+
+.pinned {
+  display: block;
+}
