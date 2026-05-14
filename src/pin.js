@@ -76,6 +76,7 @@ export class Pin extends Component {
         if (this._status === status)
             return;
         this._status = status;
+        this.setAttribute(Attributes.STATUS, status);
     }
     /**
      * The visibility state of the component

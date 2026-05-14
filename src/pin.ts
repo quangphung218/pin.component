@@ -90,6 +90,7 @@ export class Pin extends Component {
     if (!valid) throw new Error(`Invalid status value: ${status}`);
     if (this._status === status) return;
     this._status = status;
+    this.setAttribute(Attributes.STATUS, status);
   }
 
   /**
