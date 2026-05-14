@@ -1,5 +1,5 @@
 import { Template } from "@scalable.software/component";
-import { Pin, Tag, CSS, Attributes, Visibility, State, Operation } from "@quangphung218/pin";
+import { Pin, Tag, CSS, Attributes, Visibility, State, Operation, Event } from "@quangphung218/pin";
 // Configuration
 configuration(Configuration.TAG, () => {
     and("Pin imported", () => {
@@ -299,5 +299,32 @@ operation(Operation.SHOW, () => {
     });
 });
 // Event
+events(Event.ON_HIDE, () => {
+    and("Pin is defined in custom element registry", () => {
+        beforeEach(() => {
+            define(Pin.Tag, Pin);
+        });
+        and("HTML Template is added to DOM", () => {
+            beforeEach(async () => {
+                await Pin.Template.load("pin.template.html");
+            });
+            afterEach(() => {
+                remove(Pin.Tag);
+            });
+            and("a new pin is added to DOM", () => {
+                let pin;
+                beforeEach(() => {
+                    pin = add(Pin.Tag);
+                });
+                afterEach(() => {
+                    pin.remove();
+                });
+                then("`pin.onhide` setter exists", () => {
+                    expect(hasSetter(pin, Event.ON_HIDE)).toBeTrue();
+                });
+            });
+        });
+    });
+});
 // Gesture
 //# sourceMappingURL=pin.test.js.map
