@@ -116,6 +116,7 @@ export class Pin extends Component {
      */
     _attributeHandlers = {
         [Attributes.VISIBILITY]: (value) => (this.visibility = value),
+        [Attributes.STATUS]: (value) => (this.status = value),
     };
     /**
      * Cache element references to improve performance
