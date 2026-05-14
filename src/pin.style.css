@@ -82,3 +82,14 @@ svg {
   background-color: #eef6ff;
   border-color: #4a90d9;
 }
+
+/* =======================
+  Hover responsiveness
+======================= */
+@media (hover: hover) {
+  .icon:hover {
+    background-color: #f0f7ff;
+    border-color: #3b7dd1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+}
