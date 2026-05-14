@@ -49,7 +49,7 @@ export class Pin extends Component {
      */
     elements = {};
     _visibility = Visibility.VISIBLE;
-    _status = Status.PINNED;
+    _status = Status.UNPINNED;
     _onhide = null;
     set onhide(handler) {
         this._onhide && this.removeEventListener(Event.ON_HIDE, this._onhide);

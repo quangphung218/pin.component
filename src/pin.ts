@@ -59,7 +59,7 @@ export class Pin extends Component {
 
   private _visibility: Visibility = Visibility.VISIBLE;
 
-  private _status: Status = Status.PINNED;
+  private _status: Status = Status.UNPINNED;
 
   private _onhide: EventListener | null = null;
 
