@@ -101,6 +101,10 @@ metadata(Metadata.OPERATION, () => {
         then("`Operation.HIDE` exists", () => {
           expect((Operation as any).HIDE).toBeDefined();
         });
+
+        then("`Operation.SHOW` exists", () => {
+          expect((Operation as any).SHOW).toBeDefined();
+        });
       });
     });
   });
