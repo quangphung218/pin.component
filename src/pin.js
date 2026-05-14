@@ -4,7 +4,7 @@
 // Base Component
 import { Component, Template } from "@scalable.software/component";
 // Component Metadata
-import { Tag, CSS, Attributes, Visibility, Event } from "./pin.meta.js";
+import { Tag, CSS, Attributes, Visibility, Event, Status } from "./pin.meta.js";
 import { Validate } from "./pin.validation.js";
 /**
  * Optional Configuration: required for components with custom layout and style
@@ -49,6 +49,7 @@ export class Pin extends Component {
      */
     elements = {};
     _visibility = Visibility.VISIBLE;
+    _status = Status.PINNED;
     _onhide = null;
     set onhide(handler) {
         this._onhide && this.removeEventListener(Event.ON_HIDE, this._onhide);
@@ -60,6 +61,13 @@ export class Pin extends Component {
         this._onshow && this.removeEventListener(Event.ON_SHOW, this._onshow);
         this._onshow = handler;
         this._onshow && this.addEventListener(Event.ON_SHOW, this._onshow);
+    }
+    /**
+     * The pin status of the component
+     * @category State
+     */
+    get status() {
+        return this._status;
     }
     /**
      * The visibility state of the component
