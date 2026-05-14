@@ -56,6 +56,13 @@ export class Pin extends Component {
         return this._visibility;
     }
     /**
+     * Set the visibility state of the component
+     * @category State
+     */
+    set visibility(visibility) {
+        this._visibility = visibility;
+    }
+    /**
      * @hidden
      */
     constructor() {
