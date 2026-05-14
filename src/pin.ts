@@ -85,6 +85,10 @@ export class Pin extends Component {
     return this._status;
   }
 
+  public set status(_status: Status) {
+    // Intentionally empty until state mutation is implemented
+  }
+
   /**
    * The visibility state of the component
    * @category State
