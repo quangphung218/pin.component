@@ -120,7 +120,7 @@ export class Pin extends Component {
      * @hidden
      */
     _initialize = () => {
-        this.setAttribute(Attributes.STATUS, Status.PINNED);
+        this.setAttribute(Attributes.STATUS, Status.UNPINNED);
     };
     /**
      * Called by the connectedCallback prototypical method
