@@ -182,6 +182,17 @@ state(State.VISIBILITY, () => {
                             expect(pin.visibility).toBe(Visibility.VISIBLE);
                         });
                     });
+                    when("`visibility` attribute is set to `Visibility.HIDDEN`", () => {
+                        beforeEach(() => {
+                            pin.setAttribute(Attributes.VISIBILITY, Visibility.HIDDEN);
+                        });
+                        afterEach(() => {
+                            pin.removeAttribute(Attributes.VISIBILITY);
+                        });
+                        then("`pin.visibility` is `Visibility.HIDDEN`", () => {
+                            expect(pin.visibility).toBe(Visibility.HIDDEN);
+                        });
+                    });
                 });
             });
         });
