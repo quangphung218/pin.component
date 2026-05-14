@@ -77,3 +77,8 @@ svg {
 :host([status="pinned"]) .unpinned {
   display: none;
 }
+
+:host([status="pinned"]) .icon {
+  background-color: #eef6ff;
+  border-color: #4a90d9;
+}
