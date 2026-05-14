@@ -19,6 +19,7 @@ export const CSS = "pin.style.css" as const;
  */
 export const Attributes = {
   VISIBILITY: "visibility",
+  STATUS: "status",
 } as const;
 /**
  * HTML Attributes available to set
