@@ -398,6 +398,11 @@ events(Event.ON_SHOW, () => {
                                 then("`pin.onshow` listener is called", () => {
                                     expect(onshow).toHaveBeenCalled();
                                 });
+                                then("`pin.onshow` is called with `{ detail: { visibility: Visibility.VISIBLE } }`", () => {
+                                    expect(onshow).toHaveBeenCalledWith(jasmine.objectContaining({
+                                        detail: { visibility: Visibility.VISIBLE }
+                                    }));
+                                });
                             });
                         });
                     });
