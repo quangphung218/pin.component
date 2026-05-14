@@ -67,6 +67,14 @@ export class Pin extends Component {
     this._onhide && this.addEventListener(Event.ON_HIDE, this._onhide);
   }
 
+  private _onshow: EventListener | null = null;
+
+  public set onshow(handler: EventListener | null) {
+    this._onshow && this.removeEventListener(Event.ON_SHOW, this._onshow);
+    this._onshow = handler;
+    this._onshow && this.addEventListener(Event.ON_SHOW, this._onshow);
+  }
+
   /**
    * The visibility state of the component
    * @category State
