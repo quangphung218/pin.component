@@ -62,6 +62,10 @@ metadata(State.VISIBILITY, () => {
         then("`Visibility.VISIBLE` exists", () => {
           expect((Visibility as any).VISIBLE).toBeDefined();
         });
+
+        then("`Visibility.HIDDEN` exists", () => {
+          expect((Visibility as any).HIDDEN).toBeDefined();
+        });
       });
     });
   });
