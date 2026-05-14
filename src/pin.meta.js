@@ -45,7 +45,9 @@ export const Operation = {
  * @category Metadata
  * @enum
  */
-export const Event = {};
+export const Event = {
+    ON_HIDE: "onhide",
+};
 /**
  * @category Metadata
  * @enum
