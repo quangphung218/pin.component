@@ -126,6 +126,10 @@ metadata(Metadata.EVENT, () => {
         then("`Event.ON_HIDE` exists", () => {
           expect((Event as any).ON_HIDE).toBeDefined();
         });
+
+        then("`Event.ON_SHOW` exists", () => {
+          expect((Event as any).ON_SHOW).toBeDefined();
+        });
       });
     });
   });
