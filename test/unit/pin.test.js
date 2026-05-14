@@ -153,6 +153,9 @@ state(State.VISIBILITY, () => {
                         expect(pin.visibility).toBe(Visibility.VISIBLE);
                     });
                 });
+                then("`pin.visibility` setter exists", () => {
+                    expect(hasSetter(pin, "visibility")).toBeTrue();
+                });
             });
         });
     });
