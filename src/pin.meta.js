@@ -37,7 +37,10 @@ export const Visibility = {
  * @category Metadata
  * @enum
  */
-export const Operation = {};
+export const Operation = {
+    HIDE: "hide",
+    SHOW: "show",
+};
 /**
  * @category Metadata
  * @enum

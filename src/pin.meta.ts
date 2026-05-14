@@ -59,7 +59,10 @@ export type Visibility = (typeof Visibility)[keyof typeof Visibility];
  * @category Metadata
  * @enum
  */
-export const Operation = {} as const;
+export const Operation = {
+  HIDE: "hide",
+  SHOW: "show",
+} as const;
 
 /**
  * @category Metadata
