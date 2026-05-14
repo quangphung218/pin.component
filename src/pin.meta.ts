@@ -62,6 +62,7 @@ export type Visibility = (typeof Visibility)[keyof typeof Visibility];
  */
 export const Status = {
   PINNED: "pinned",
+  UNPINNED: "unpinned",
 } as const;
 
 /**

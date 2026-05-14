@@ -40,6 +40,7 @@ export const Visibility = {
  */
 export const Status = {
     PINNED: "pinned",
+    UNPINNED: "unpinned",
 };
 /**
  * @category Metadata
