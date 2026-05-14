@@ -73,6 +73,7 @@ export class Pin extends Component {
    */
   public set visibility(visibility: Visibility) {
     visibility = visibility ?? Visibility.VISIBLE;
+    visibility = Validate.visibility(visibility);
     if (this._visibility === visibility) return;
     this._visibility = visibility;
     visibility === Visibility.VISIBLE && this.removeAttribute(Attributes.VISIBILITY);

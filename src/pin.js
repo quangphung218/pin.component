@@ -5,6 +5,7 @@
 import { Component, Template } from "@scalable.software/component";
 // Component Metadata
 import { Tag, CSS, Attributes, Visibility } from "./pin.meta.js";
+import { Validate } from "./pin.validation.js";
 /**
  * Optional Configuration: required for components with custom layout and style
  * @category Configuration
@@ -61,6 +62,7 @@ export class Pin extends Component {
      */
     set visibility(visibility) {
         visibility = visibility ?? Visibility.VISIBLE;
+        visibility = Validate.visibility(visibility);
         if (this._visibility === visibility)
             return;
         this._visibility = visibility;
