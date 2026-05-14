@@ -342,6 +342,11 @@ events(Event.ON_HIDE, () => {
                             then("`pin.onhide` listener is called", () => {
                                 expect(onhide).toHaveBeenCalled();
                             });
+                            then("`pin.onhide` is called with `{ detail: { visibility: Visibility.HIDDEN } }`", () => {
+                                expect(onhide).toHaveBeenCalledWith(jasmine.objectContaining({
+                                    detail: { visibility: Visibility.HIDDEN }
+                                }));
+                            });
                         });
                     });
                 });
