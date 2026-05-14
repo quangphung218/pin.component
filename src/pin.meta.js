@@ -49,6 +49,9 @@ export const Status = {
 export const Operation = {
     HIDE: "hide",
     SHOW: "show",
+    PIN: "pin",
+    UNPIN: "unpin",
+    TOGGLE: "toggle",
 };
 /**
  * @category Metadata
@@ -57,10 +60,14 @@ export const Operation = {
 export const Event = {
     ON_HIDE: "onhide",
     ON_SHOW: "onshow",
+    ON_PIN: "onpin",
+    ON_UNPIN: "onunpin",
 };
 /**
  * @category Metadata
  * @enum
  */
-export const Gesture = {};
+export const Gesture = {
+    CLICK: "click",
+};
 //# sourceMappingURL=pin.meta.js.map

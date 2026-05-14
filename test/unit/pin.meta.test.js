@@ -113,6 +113,15 @@ metadata(Metadata.OPERATION, () => {
                 then("`Operation.SHOW` exists", () => {
                     expect(Operation.SHOW).toBeDefined();
                 });
+                then("`Operation.PIN` exists", () => {
+                    expect(Operation.PIN).toBeDefined();
+                });
+                then("`Operation.UNPIN` exists", () => {
+                    expect(Operation.UNPIN).toBeDefined();
+                });
+                then("`Operation.TOGGLE` exists", () => {
+                    expect(Operation.TOGGLE).toBeDefined();
+                });
             });
         });
     });
@@ -134,6 +143,12 @@ metadata(Metadata.EVENT, () => {
                 then("`Event.ON_SHOW` exists", () => {
                     expect(Event.ON_SHOW).toBeDefined();
                 });
+                then("`Event.ON_PIN` exists", () => {
+                    expect(Event.ON_PIN).toBeDefined();
+                });
+                then("`Event.ON_UNPIN` exists", () => {
+                    expect(Event.ON_UNPIN).toBeDefined();
+                });
             });
         });
     });
@@ -147,6 +162,11 @@ metadata(Metadata.GESTURE, () => {
         when("Gesture is defined", () => {
             then("Gesture is an object", () => {
                 expect(typeof Gesture).toBe("object");
+            });
+            when("Gesture is an object", () => {
+                then("`Gesture.CLICK` exists", () => {
+                    expect(Gesture.CLICK).toBeDefined();
+                });
             });
         });
     });

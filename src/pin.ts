@@ -7,7 +7,7 @@ import { Component, Template } from "@scalable.software/component";
 import { type Configuration } from "@scalable.software/component";
 
 // Component Metadata
-import { Tag, CSS, Attributes, Visibility, Event, Status } from "./pin.meta.js";
+import { Tag, CSS, Attributes, Visibility, Event, Status, Gesture } from "./pin.meta.js";
 import { Validate } from "./pin.validation.js";
 
 /**
@@ -55,7 +55,7 @@ export class Pin extends Component {
    * @category State
    * @hidden
    */
-  protected elements: {} = {};
+  protected elements: { icon?: HTMLDivElement } = {};
 
   private _visibility: Visibility = Visibility.VISIBLE;
 
@@ -77,6 +77,22 @@ export class Pin extends Component {
     this._onshow && this.addEventListener(Event.ON_SHOW, this._onshow);
   }
 
+  private _onpin: EventListener | null = null;
+
+  public set onpin(handler: EventListener | null) {
+    this._onpin && this.removeEventListener(Event.ON_PIN, this._onpin);
+    this._onpin = handler;
+    this._onpin && this.addEventListener(Event.ON_PIN, this._onpin);
+  }
+
+  private _onunpin: EventListener | null = null;
+
+  public set onunpin(handler: EventListener | null) {
+    this._onunpin && this.removeEventListener(Event.ON_UNPIN, this._onunpin);
+    this._onunpin = handler;
+    this._onunpin && this.addEventListener(Event.ON_UNPIN, this._onunpin);
+  }
+
   /**
    * The pin status of the component
    * @category State
@@ -90,6 +106,9 @@ export class Pin extends Component {
     if (this._status === status) return;
     this._status = status;
     this.setAttribute(Attributes.STATUS, status);
+    const statusEvent = { detail: { status } };
+    status === Status.PINNED && this._dispatchEvent(Event.ON_PIN, statusEvent);
+    status === Status.UNPINNED && this._dispatchEvent(Event.ON_UNPIN, statusEvent);
   }
 
   /**
@@ -120,6 +139,13 @@ export class Pin extends Component {
 
   public show = () => (this.visibility = Visibility.VISIBLE);
 
+  public pin = () => (this.status = Status.PINNED);
+
+  public unpin = () => (this.status = Status.UNPINNED);
+
+  public toggle = () =>
+    (this.status = this._status === Status.PINNED ? Status.UNPINNED : Status.PINNED);
+
   /**
    * @hidden
    */
@@ -142,7 +168,11 @@ export class Pin extends Component {
    * @category Configuration
    * @hidden
    */
-  protected _cache = () => {};
+  protected _cache = () => {
+    this.elements.icon = this.root.querySelector("div.icon") as HTMLDivElement;
+  };
+
+  protected _handleClick = () => this.toggle();
 
   /**
    * Initialize component attributes with default values
@@ -158,12 +188,16 @@ export class Pin extends Component {
    * @category Configuration
    * @hidden
    */
-  protected _addEventListeners = () => {};
+  protected _addEventListeners = () => {
+    this.elements.icon?.addEventListener(Gesture.CLICK, this._handleClick);
+  };
 
   /**
    * Called by the disconnectedCallback prototypical method
    * @category Configuration
    * @hidden
    */
-  protected _removeEventListeners = () => {};
+  protected _removeEventListeners = () => {
+    this.elements.icon?.removeEventListener(Gesture.CLICK, this._handleClick);
+  };
 }

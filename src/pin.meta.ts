@@ -77,6 +77,9 @@ export type Status = (typeof Status)[keyof typeof Status];
 export const Operation = {
   HIDE: "hide",
   SHOW: "show",
+  PIN: "pin",
+  UNPIN: "unpin",
+  TOGGLE: "toggle",
 } as const;
 
 /**
@@ -91,6 +94,8 @@ export type Operation = (typeof Operation)[keyof typeof Operation];
 export const Event = {
   ON_HIDE: "onhide",
   ON_SHOW: "onshow",
+  ON_PIN: "onpin",
+  ON_UNPIN: "onunpin",
 } as const;
 /**
  * @category Metadata
@@ -101,7 +106,9 @@ export type Event = (typeof Event)[keyof typeof Event];
  * @category Metadata
  * @enum
  */
-export const Gesture = {} as const;
+export const Gesture = {
+  CLICK: "click",
+} as const;
 /**
  * @category Metadata
  */

@@ -9,7 +9,8 @@ import {
   State,
   Operation,
   Event,
-  Status
+  Status,
+  Gesture
 } from "@quangphung218/pin";
 
 // Configuration
@@ -120,6 +121,10 @@ composition(Composition.TEMPLATE, () => {
           then("`div.icon` contains `svg.pinned`", () => {
             const svg = div.querySelector("svg.pinned");
             expect(svg).not.toBeNull();
+          });
+
+          then("`pin.elements.icon` is a cached reference to the `div` with class `icon`", () => {
+            expect((pin as any).elements.icon).toBe(div);
           });
         });
       });
@@ -373,6 +378,157 @@ state(State.STATUS, () => {
   });
 });
 
+operation(Operation.PIN, () => {
+  and("Pin is defined in custom element registry", () => {
+    beforeEach(() => {
+      define(Pin.Tag, Pin);
+    });
+
+    and("HTML Template is added to DOM", () => {
+      beforeEach(async () => {
+        await Pin.Template.load("pin.template.html");
+      });
+      afterEach(() => {
+        remove(Pin.Tag);
+      });
+
+      and("a new pin is added to DOM", () => {
+        let pin: Pin;
+        beforeEach(() => {
+          pin = add<Pin>(Pin.Tag);
+        });
+        afterEach(() => {
+          pin.remove();
+        });
+
+        then("`pin.pin` method exists", () => {
+          expect(pin.pin).toBeDefined();
+        });
+
+        and("`pin.pin` method exists", () => {
+          when("invoking `pin.pin`", () => {
+            beforeEach(() => {
+              pin.pin();
+            });
+
+            then("`pin.status` is `Status.PINNED`", () => {
+              expect(pin.status).toBe(Status.PINNED);
+            });
+          });
+        });
+      });
+    });
+  });
+});
+
+operation(Operation.UNPIN, () => {
+  and("Pin is defined in custom element registry", () => {
+    beforeEach(() => {
+      define(Pin.Tag, Pin);
+    });
+
+    and("HTML Template is added to DOM", () => {
+      beforeEach(async () => {
+        await Pin.Template.load("pin.template.html");
+      });
+      afterEach(() => {
+        remove(Pin.Tag);
+      });
+
+      and("a new pin is added to DOM", () => {
+        let pin: Pin;
+        beforeEach(() => {
+          pin = add<Pin>(Pin.Tag);
+        });
+        afterEach(() => {
+          pin.remove();
+        });
+
+        then("`pin.unpin` method exists", () => {
+          expect(pin.unpin).toBeDefined();
+        });
+
+        and("`pin.unpin` method exists", () => {
+          when("`pin.status` is set to `Status.PINNED`", () => {
+            beforeEach(() => {
+              pin.status = Status.PINNED;
+            });
+
+            when("invoking `pin.unpin`", () => {
+              beforeEach(() => {
+                pin.unpin();
+              });
+
+              then("`pin.status` is `Status.UNPINNED`", () => {
+                expect(pin.status).toBe(Status.UNPINNED);
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+});
+
+operation(Operation.TOGGLE, () => {
+  and("Pin is defined in custom element registry", () => {
+    beforeEach(() => {
+      define(Pin.Tag, Pin);
+    });
+
+    and("HTML Template is added to DOM", () => {
+      beforeEach(async () => {
+        await Pin.Template.load("pin.template.html");
+      });
+      afterEach(() => {
+        remove(Pin.Tag);
+      });
+
+      and("a new pin is added to DOM", () => {
+        let pin: Pin;
+        beforeEach(() => {
+          pin = add<Pin>(Pin.Tag);
+        });
+        afterEach(() => {
+          pin.remove();
+        });
+
+        then("`pin.toggle` method exists", () => {
+          expect(pin.toggle).toBeDefined();
+        });
+
+        and("`pin.toggle` method exists", () => {
+          when("invoking `pin.toggle`", () => {
+            beforeEach(() => {
+              pin.toggle();
+            });
+
+            then("`pin.status` is `Status.PINNED`", () => {
+              expect(pin.status).toBe(Status.PINNED);
+            });
+          });
+
+          when("`pin.status` is `Status.PINNED`", () => {
+            beforeEach(() => {
+              pin.status = Status.PINNED;
+            });
+
+            when("invoking `pin.toggle`", () => {
+              beforeEach(() => {
+                pin.toggle();
+              });
+
+              then("`pin.status` is `Status.UNPINNED`", () => {
+                expect(pin.status).toBe(Status.UNPINNED);
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+});
+
 // Operation
 operation(Operation.HIDE, () => {
   and("Pin is defined in custom element registry", () => {
@@ -601,4 +757,185 @@ events(Event.ON_SHOW, () => {
   });
 });
 
-// Gesture
+events(Event.ON_PIN, () => {
+  and("Pin is defined in custom element registry", () => {
+    beforeEach(() => {
+      define(Pin.Tag, Pin);
+    });
+
+    and("HTML Template is added to DOM", () => {
+      beforeEach(async () => {
+        await Pin.Template.load("pin.template.html");
+      });
+      afterEach(() => {
+        remove(Pin.Tag);
+      });
+
+      and("a new pin is added to DOM", () => {
+        let pin: Pin;
+        beforeEach(() => {
+          pin = add<Pin>(Pin.Tag);
+        });
+        afterEach(() => {
+          pin.remove();
+        });
+
+        then("`pin.onpin` setter exists", () => {
+          expect(hasSetter(pin, Event.ON_PIN)).toBeTrue();
+        });
+
+        and("`pin.onpin` setter exists", () => {
+          and("`pin.onpin` is set to a listener", () => {
+            let onpin: jasmine.Spy;
+            beforeEach(() => {
+              onpin = jasmine.createSpy("onpin");
+              pin.onpin = onpin;
+            });
+            afterEach(() => {
+              pin.onpin = null;
+            });
+
+            when("`pin.status` is set to `Status.PINNED`", () => {
+              beforeEach(() => {
+                pin.status = Status.PINNED;
+              });
+              afterEach(() => {
+                pin.status = Status.UNPINNED;
+              });
+
+              then("`pin.onpin` listener is called", () => {
+                expect(onpin).toHaveBeenCalled();
+              });
+
+              then("`pin.onpin` is called with `{ detail: { status: Status.PINNED } }`", () => {
+                expect(onpin).toHaveBeenCalledWith(
+                  jasmine.objectContaining({
+                    detail: { status: Status.PINNED }
+                  })
+                );
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+});
+
+events(Event.ON_UNPIN, () => {
+  and("Pin is defined in custom element registry", () => {
+    beforeEach(() => {
+      define(Pin.Tag, Pin);
+    });
+
+    and("HTML Template is added to DOM", () => {
+      beforeEach(async () => {
+        await Pin.Template.load("pin.template.html");
+      });
+      afterEach(() => {
+        remove(Pin.Tag);
+      });
+
+      and("a new pin is added to DOM", () => {
+        let pin: Pin;
+        beforeEach(() => {
+          pin = add<Pin>(Pin.Tag);
+        });
+        afterEach(() => {
+          pin.remove();
+        });
+
+        then("`pin.onunpin` setter exists", () => {
+          expect(hasSetter(pin, Event.ON_UNPIN)).toBeTrue();
+        });
+
+        and("`pin.onunpin` setter exists", () => {
+          and("`pin.status` is set to `Status.PINNED`", () => {
+            beforeEach(() => {
+              pin.status = Status.PINNED;
+            });
+
+            and("`pin.onunpin` is set to a listener", () => {
+              let onunpin: jasmine.Spy;
+              beforeEach(() => {
+                onunpin = jasmine.createSpy("onunpin");
+                pin.onunpin = onunpin;
+              });
+              afterEach(() => {
+                pin.onunpin = null;
+              });
+
+              when("`pin.status` is set to `Status.UNPINNED`", () => {
+                beforeEach(() => {
+                  pin.status = Status.UNPINNED;
+                });
+
+                then("`pin.onunpin` listener is called", () => {
+                  expect(onunpin).toHaveBeenCalled();
+                });
+
+                then("`pin.onunpin` is called with `{ detail: { status: Status.UNPINNED } }`", () => {
+                  expect(onunpin).toHaveBeenCalledWith(
+                    jasmine.objectContaining({
+                      detail: { status: Status.UNPINNED }
+                    })
+                  );
+                });
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+});
+
+gesture(Gesture.CLICK, () => {
+  given("Pin is defined in custom element registry", () => {
+    beforeEach(() => {
+      define(Pin.Tag, Pin);
+    });
+
+    and("HTML Template is added to DOM", () => {
+      beforeEach(async () => {
+        await Pin.Template.load("pin.template.html");
+      });
+      afterEach(() => {
+        remove(Pin.Tag);
+      });
+
+      and("a new pin is added to DOM", () => {
+        let pin: Pin;
+        beforeEach(() => {
+          pin = add<Pin>(Pin.Tag);
+        });
+        afterEach(() => {
+          pin.remove();
+        });
+
+        when("`Gesture.CLICK` on `div` with class `icon` once", () => {
+          beforeEach(() => {
+            const icon = pin.root.querySelector("div.icon") as HTMLDivElement;
+            icon.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+          });
+
+          then("`pin.status` is `Status.PINNED`", () => {
+            expect(pin.status).toBe(Status.PINNED);
+          });
+        });
+
+        when("`pin.status` is `Status.PINNED` and `div.icon` is clicked", () => {
+          beforeEach(() => {
+            pin.status = Status.PINNED;
+            const icon = pin.root.querySelector("div.icon") as HTMLDivElement;
+            icon.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+          });
+
+          then("`pin.status` is `Status.UNPINNED`", () => {
+            expect(pin.status).toBe(Status.UNPINNED);
+          });
+        });
+      });
+    });
+  });
+});
