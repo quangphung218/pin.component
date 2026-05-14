@@ -47,6 +47,7 @@ export type State = (typeof State)[keyof typeof State];
  */
 export const Visibility = {
   VISIBLE: "visible",
+  HIDDEN: "hidden",
 } as const;
 
 /**

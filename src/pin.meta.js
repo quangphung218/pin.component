@@ -31,6 +31,7 @@ export const State = {
  */
 export const Visibility = {
     VISIBLE: "visible",
+    HIDDEN: "hidden",
 };
 /**
  * @category Metadata
