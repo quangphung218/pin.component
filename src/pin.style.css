@@ -109,3 +109,10 @@ svg {
     --svg-fill-color: #d0d0d8;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  :host([status="pinned"]) .icon {
+    background-color: #1e3a5f;
+    border-color: #5a9ee8;
+  }
+}
