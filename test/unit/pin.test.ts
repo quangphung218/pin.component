@@ -296,6 +296,12 @@ state(State.STATUS, () => {
         then("`pin.status` getter exists", () => {
           expect((pin as any).status).toBeDefined();
         });
+
+        when("`pin.status` getter exists", () => {
+          then("`pin.status` is `Status.UNPINNED`", () => {
+            expect(pin.status).toBe(Status.UNPINNED);
+          });
+        });
       });
     });
   });

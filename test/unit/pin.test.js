@@ -1,5 +1,5 @@
 import { Template } from "@scalable.software/component";
-import { Pin, Tag, CSS, Attributes, Visibility, State, Operation, Event } from "@quangphung218/pin";
+import { Pin, Tag, CSS, Attributes, Visibility, State, Operation, Event, Status } from "@quangphung218/pin";
 // Configuration
 configuration(Configuration.TAG, () => {
     and("Pin imported", () => {
@@ -244,6 +244,11 @@ state(State.STATUS, () => {
                 });
                 then("`pin.status` getter exists", () => {
                     expect(pin.status).toBeDefined();
+                });
+                when("`pin.status` getter exists", () => {
+                    then("`pin.status` is `Status.UNPINNED`", () => {
+                        expect(pin.status).toBe(Status.UNPINNED);
+                    });
                 });
             });
         });
