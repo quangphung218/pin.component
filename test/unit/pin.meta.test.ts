@@ -5,7 +5,8 @@ import {
   Operation,
   Event,
   Gesture,
-  Visibility
+  Visibility,
+  Status
 } from "@quangphung218/pin";
 import * as PinModule from "@quangphung218/pin";
 
@@ -52,6 +53,14 @@ metadata(State.STATUS, () => {
   and("PinModule imported", () => {
     then("`Status` exists", () => {
       expect((PinModule as any).Status).toBeDefined();
+    });
+  });
+});
+
+metadata(State.STATUS, () => {
+  and("Status imported", () => {
+    then("`Status.PINNED` exists", () => {
+      expect((Status as any).PINNED).toBeDefined();
     });
   });
 });
