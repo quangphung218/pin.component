@@ -1,5 +1,5 @@
 /**
- * @module Component
+ * @module Pin
  */
 
 // Base Component
@@ -7,7 +7,7 @@ import { Component, Template } from "@scalable.software/component";
 import { type Configuration } from "@scalable.software/component";
 
 // Component Metadata
-import { Tag, CSS, Attributes } from "./component.meta.js";
+import { Tag, CSS, Attributes } from "./pin.meta.js";
 
 /**
  * Optional Configuration: required for components with custom layout and style
@@ -26,7 +26,7 @@ export const configuration: Configuration = {
 /**
  * @category Component
  */
-export class component extends Component {
+export class Pin extends Component {
   /**
    * The tag name of the component
    * @category Configuration
