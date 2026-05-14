@@ -97,3 +97,15 @@ svg {
     fill: #2d6bb8;
   }
 }
+
+/* =======================
+  Dark color scheme
+======================= */
+@media (prefers-color-scheme: dark) {
+  :host {
+    --button-background-color: #2a2a2e;
+    --button-border-color: #4a4a52;
+    --button-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+    --svg-fill-color: #d0d0d8;
+  }
+}
