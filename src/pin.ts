@@ -85,8 +85,11 @@ export class Pin extends Component {
     return this._status;
   }
 
-  public set status(_status: Status) {
-    // Intentionally empty until state mutation is implemented
+  public set status(status: Status) {
+    const valid = (Object.values(Status) as string[]).includes(status as string);
+    if (!valid) throw new Error(`Invalid status value: ${status}`);
+    if (this._status === status) return;
+    this._status = status;
   }
 
   /**
