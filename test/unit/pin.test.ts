@@ -8,7 +8,8 @@ import {
   Visibility,
   State,
   Operation,
-  Event
+  Event,
+  Status
 } from "@quangphung218/pin";
 
 // Configuration
@@ -263,6 +264,37 @@ state(State.VISIBILITY, () => {
               expect(error.message).toBe("Invalid visibility value: invalid");
             });
           });
+        });
+      });
+    });
+  });
+});
+
+state(State.STATUS, () => {
+  given("Pin is defined in custom element registry", () => {
+    beforeEach(() => {
+      define(Pin.Tag, Pin);
+    });
+
+    and("HTML Template is added to DOM", () => {
+      beforeEach(async () => {
+        await Pin.Template.load("pin.template.html");
+      });
+      afterEach(() => {
+        remove(Pin.Tag);
+      });
+
+      and("a new pin is added to DOM", () => {
+        let pin: Pin;
+        beforeEach(() => {
+          pin = add<Pin>(Pin.Tag);
+        });
+        afterEach(() => {
+          pin.remove();
+        });
+
+        then("`pin.status` getter exists", () => {
+          expect((pin as any).status).toBeDefined();
         });
       });
     });
