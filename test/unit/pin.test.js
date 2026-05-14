@@ -1,5 +1,5 @@
 import { Template } from "@scalable.software/component";
-import { Pin, Tag, CSS, Attributes, State } from "@quangphung218/pin";
+import { Pin, Tag, CSS, Attributes, Visibility, State } from "@quangphung218/pin";
 // Configuration
 configuration(Configuration.TAG, () => {
     and("Pin imported", () => {
@@ -147,6 +147,11 @@ state(State.VISIBILITY, () => {
                 });
                 then("`pin.visibility` getter exists", () => {
                     expect(pin.visibility).toBeDefined();
+                });
+                when("`pin.visibility` getter exists", () => {
+                    then("`pin.visibility` is `Visibility.VISIBLE`", () => {
+                        expect(pin.visibility).toBe(Visibility.VISIBLE);
+                    });
                 });
             });
         });
