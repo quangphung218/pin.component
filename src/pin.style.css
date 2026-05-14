@@ -92,4 +92,8 @@ svg {
     border-color: #3b7dd1;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   }
+
+  .icon:hover svg {
+    fill: #2d6bb8;
+  }
 }
