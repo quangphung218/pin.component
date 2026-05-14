@@ -121,6 +121,12 @@ metadata(Metadata.EVENT, () => {
       then("Event is an object", () => {
         expect(typeof Event).toBe("object");
       });
+
+      when("Event is an object", () => {
+        then("`Event.ON_HIDE` exists", () => {
+          expect((Event as any).ON_HIDE).toBeDefined();
+        });
+      });
     });
   });
 });
